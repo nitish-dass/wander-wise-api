@@ -1,0 +1,8 @@
+@baseUrl = http://localhost:3000
+
+POST {{baseUrl}}/baggages
+Content-Type: application/json
+
+{
+    "name": "T shirt"
+}

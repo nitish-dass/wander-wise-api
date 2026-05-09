@@ -2,6 +2,7 @@
 import express from 'express'
 // to bypass error while running, need to add "type"="module" instead of common js as type in package.json before the keyword.
 import connectDB from './config/database.js';
+import HANDLERS from './handlers/index.js';
 
 const app = express();
 
@@ -10,6 +11,10 @@ const app = express();
 const PORT = process.env.PORT;
 
 connectDB();
+
+
+app.use(express.json());
+app.use("/", HANDLERS)
 
 // function printResponse() {
 //     console.log("Server is running on port 3000 "); ------------ traditional function decleration
