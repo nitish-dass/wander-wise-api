@@ -3,6 +3,7 @@ import express from 'express'
 // to bypass error while running, need to add "type"="module" instead of common js as type in package.json before the keyword.
 import connectDB from './config/database.js';
 import HANDLERS from './handlers/index.js';
+import errorMiddleware from './middlewares/error.js';
 
 const app = express();
 
@@ -14,7 +15,9 @@ connectDB();
 
 
 app.use(express.json());
-app.use("/", HANDLERS)
+app.use("/", HANDLERS);
+app.use(errorMiddleware);   //just load gareko , not executable tei vayera function vayera pani () use na gareko
+
 
 // function printResponse() {
 //     console.log("Server is running on port 3000 "); ------------ traditional function decleration
