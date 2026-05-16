@@ -1,8 +1,9 @@
 @baseUrl = http://localhost:3000
 
-POST {{baseUrl}}/baggages
+POST {{baseUrl}}/baggages       
+//baggage location handlers ko index ma define gareko
 Content-Type: application/json
 
 {
-    "name": "T shirt"
+    "name": ""
 }

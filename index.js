@@ -15,7 +15,7 @@ connectDB();
 
 
 app.use(express.json());
-app.use("/", HANDLERS);
+app.use("/", HANDLERS);   //end point pahila aauxa tei vayera handlers errorMiddleware vanda mathi rakheko
 app.use(errorMiddleware);   //just load gareko , not executable tei vayera function vayera pani () use na gareko
 
 
