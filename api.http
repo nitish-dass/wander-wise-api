@@ -5,5 +5,11 @@ POST {{baseUrl}}/baggages
 Content-Type: application/json
 
 {
-    "name": ""
+    "name": "Suit"
 }
+
+### Get all bagggages
+GET {{baseUrl}}/baggages
+
+### Get a specific baggages
+GET {{baseUrl}}/baggages/6a097ca83ae358ad6cb6fd6d
