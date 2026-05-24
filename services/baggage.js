@@ -18,3 +18,15 @@ export const getOne = async (_id) => {
     }
     return baggage;
 }
+
+export const update = async (_id, data) => {
+    const baggage = await Baggage.findByIdAndUpdate(_id, data, { new: true});
+    if(!baggage) throw new NotFoundError("Baggage not found!");
+    return baggage;
+}
+
+export const destroy = async (_id) => {
+    const baggage = await Baggage.findByIdAndDelete(_id)
+    if(!baggage) throw new NotFoundError("Baggage not found!");
+    return baggage;
+}
