@@ -20,7 +20,7 @@ export const getOne = async (_id) => {
 }
 
 export const update = async (_id, data) => {
-    const baggage = await Baggage.findByIdAndUpdate(_id, data, { new: true});
+    const baggage = await Baggage.findByIdAndUpdate(_id, data, { returnDocument: 'after' });
     if(!baggage) throw new NotFoundError("Baggage not found!");
     return baggage;
 }
