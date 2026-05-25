@@ -46,7 +46,7 @@ export const updateUserValidator = [
         .custom(async (value, { req }) => {
             const user = await User.findOne({ 
                 email: value,
-                _id: { $ne: requestAnimationFrame.params.id}
+                _id: { $ne: req.params.id}
              });
                 if (user) {
                     throw new ValidationError("This email has already been taken");
@@ -59,4 +59,21 @@ export const updateUserValidator = [
         .withMessage("Password must be at least 8 characters long")
         .trim(),
     validate,
-]
+];
+
+export const loginValidator = [
+    body("email") 
+        .notEmpty()
+        .withMessage("Email is required")
+        .isEmail()
+        .withMessage("Invalid email")
+        .normalizeEmail()
+        .trim(),
+    body("password")
+        .notEmpty()
+        .withMessage("Password is required")
+        .isLength({ min: 8 })
+        .withMessage("Password must be at least 8 characters long")
+        .trim(),
+    validate,
+];

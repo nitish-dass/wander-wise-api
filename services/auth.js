@@ -1,6 +1,7 @@
 import { compare } from "bcrypt";
 import { generateAccessToken } from "../config/jwt.js";
-import { create } from "./user.js";
+import { create, getUserByEmail } from "./user.js";
+import { UnauthorizedError } from "../errors/unauthorized.js";
 
 export const register = async (data) => {
     const user = await create(data);
@@ -11,9 +12,9 @@ export const register = async (data) => {
 }
 
 export const login = async (data) => {
-    const user = await getUserbyEmail(data.email);
+    const user = await getUserByEmail(data.email);
     if (!await compare(data.password, user.password )) {
-        throw new error("Invalid Credintials!");
+        throw new UnauthorizedError();
     }
     return generateAccessToken({ userId: user._id });
 }

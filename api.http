@@ -50,7 +50,7 @@ Content-Type: application/json
 
 {
     "name": "Faaaahhhhh",
-    "email": ""
+    "email": "fah@test6.com"
 }
 
 ###delet a specific user
@@ -62,7 +62,7 @@ Content-Type: application/json
 
 {
     "name": "Test User",
-    "email": "user@test.com",
+    "email": "user@test3.com",
     "password": "abcdefgh"
 }
 
@@ -71,6 +71,7 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email": "user@test.com",
+    "email": "user@test3.com",
     "password": "abcdefgh"
 }
+

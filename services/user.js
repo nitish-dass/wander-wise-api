@@ -17,6 +17,12 @@ export const getOne = async (_id) => {
     return user;
 }
 
+export const getUserByEmail = async (email) => {
+    const user = await User.findOne({ email });
+    if (!user) throw new NotFoundError("User not found!");
+    return user;
+}
+
 export const update = async (_id, data ) => {
     const user = await User.findByIdAndUpdate(
         _id, 

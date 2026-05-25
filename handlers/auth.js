@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createUserValidator } from "../validators/user.js";
-import { register } from "../services/auth.js";
+import { createUserValidator, loginValidator } from "../validators/user.js";
+import { login, register } from "../services/auth.js";
 
 const AUTH_ROUTER = Router();
 
@@ -14,7 +14,7 @@ AUTH_ROUTER.post("/register", createUserValidator, async (req, res, next) => {
     }
 });
 
-AUTH_ROUTER.post("/login", async (req, res, next) => {
+AUTH_ROUTER.post("/login", loginValidator, async (req, res, next) => {
     try {
         const token = await login(req.body);
         res.status(200).json({ data: { token} });
