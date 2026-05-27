@@ -2,9 +2,12 @@
 
 @userId=6a101c40b574efcd5768027b
 
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3Nzk4Njg5NDQsImV4cCI6MTc3OTk1NTM0NH0.umWpsttLDKjzFZmFm6mRGFRiHJLm9i9opXusFtWMFqc
+
 POST {{baseUrl}}/baggages       
 //baggage location handlers ko index ma define gareko
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "Suit"
@@ -12,13 +15,19 @@ Content-Type: application/json
 
 ### Get all bagggages
 GET {{baseUrl}}/baggages
+Authorization: Bearer {{token}}
+
 
 ### Get a specific baggages
 GET {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
+Authorization: Bearer {{token}}
+
 
 ###update a specific baggage
 PATCH {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
 
 {
     "name": "Jeans",
@@ -27,10 +36,13 @@ Content-Type: application/json
 
 ###Delete a specific baggages
 DELETE {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
+Authorization: Bearer {{token}}
+
 
 ###create a user 
 POST {{baseUrl}}/users
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "Faahhh User",
@@ -40,13 +52,16 @@ Content-Type: application/json
 
 ### Get all users
 GET {{baseUrl}}/users
+Authorization: Bearer {{token}}
 
 ### Get specific user
 GET {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
 
 ###update a specific user
 PATCH  {{baseUrl}}/users/{{userId}}
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
     "name": "Faaaahhhhh",
@@ -55,6 +70,7 @@ Content-Type: application/json
 
 ###delet a specific user
 DELETE {{baseUrl}}/users/{{userId}}
+Authorization: Bearer {{token}}
 
 ###register a user
 POST {{baseUrl}}/auth/register

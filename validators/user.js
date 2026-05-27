@@ -9,7 +9,7 @@ export const createUserValidator = [
         .withMessage("Name is required")
         .trim()
         .escape(),
-   body("email")
+    body("email")
         .notEmpty()
         .withMessage("Email is required")
         .isEmail()

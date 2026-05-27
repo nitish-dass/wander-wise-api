@@ -44,5 +44,5 @@ UserSchema.pre("findOneAndUpdate", async function (){
   }
 });
 
-const User = model ("user", UserSchema);
+const User = model ("User", UserSchema);
 export default User;
