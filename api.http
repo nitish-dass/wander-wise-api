@@ -2,9 +2,14 @@
 
 @userId=6a101c40b574efcd5768027b
 
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3Nzk4Njg5NDQsImV4cCI6MTc3OTk1NTM0NH0.umWpsttLDKjzFZmFm6mRGFRiHJLm9i9opXusFtWMFqc
+@tripId=6a1d48b7ad4f953a2ee6ed67
 
-POST {{baseUrl}}/baggages       
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3ODA2NDcwNDIsImV4cCI6MTc4MDczMzQ0Mn0.9bUHzqmf1aj36mSVwMuo761jdujImIcO65FXDujHrow
+
+@invitationToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlwSWQiOiI2YTFkNDhiN2FkNGY5NTNhMmVlNmVkNjciLCJpYXQiOjE3ODA2NDcxODUsImV4cCI6MTc4MDY1MDc4NX0.PG_BHKEIXqheNAKKVliKGnF8HrYWJ7XCrGwjKpSxeFk
+
+### Create Baggage Data
+POST {{baseUrl}}/{{tripId}}/baggages       
 //baggage location handlers ko index ma define gareko
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -14,17 +19,17 @@ Authorization: Bearer {{token}}
 }
 
 ### Get all bagggages
-GET {{baseUrl}}/baggages
+GET {{baseUrl}}/{{tripId}}/baggages
 Authorization: Bearer {{token}}
 
 
 ### Get a specific baggages
-GET {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
+GET {{baseUrl}}/{{tripId}}/baggages/6a0017f8db270fbb2fb28397
 Authorization: Bearer {{token}}
 
 
 ###update a specific baggage
-PATCH {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
+PATCH {{baseUrl}}/{{tripId}}/baggages/6a0017f8db270fbb2fb28397
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -35,7 +40,7 @@ Authorization: Bearer {{token}}
 }
 
 ###Delete a specific baggages
-DELETE {{baseUrl}}/baggages/6a0017f8db270fbb2fb28397
+DELETE {{baseUrl}}/{{tripId}}/baggages/6a0017f8db270fbb2fb28397
 Authorization: Bearer {{token}}
 
 
@@ -91,3 +96,60 @@ Content-Type: application/json
     "password": "abcdefgh"
 }
 
+### create a new trip
+POST {{baseUrl}}/trips
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Trip to the moon",
+  "startDate": "2025-12-15",
+  "endDate": "2025-12-16",
+  "budget": {
+    "total": 1000
+  },
+  "destinations": ["Moon", "Mars", "Jupiter"]
+}
+
+### Get all trips
+GET {{baseUrl}}/trips
+Authorization: Bearer {{token}}
+
+### Get a trip by id
+GET {{baseUrl}}/trips/{{tripId}}
+Authorization: Bearer {{token}}
+
+### Update trip
+PATCH {{baseUrl}}/trips/{{tripId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "budget": {
+    "expenses": [
+        {
+            "name": "taxi",
+            "amount": 600
+        }
+    ]
+  }
+}
+
+### Delete a trip
+DELETE {{baseUrl}}/trips/{{tripId}}
+Authorization: Bearer {{token}}
+
+### send trip invitation
+POST {{baseUrl}}/trips/{{tripId}}/invite
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "collaboratorEmails": [
+        "dass2005nd@gmail.com"
+    ]
+}
+
+### Accept invite
+GET {{baseUrl}}/trips/{{tripId}}/invite/accept?token={{invitationToken}}
+Authorization: Bearer {{token}}

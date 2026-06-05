@@ -14,7 +14,6 @@ const PORT = process.env.PORT;
 
 connectDB();
 
-
 app.use(express.json());
 app.use(authMiddleware);
 app.use("/", HANDLERS);   //end point pahila aauxa tei vayera handlers errorMiddleware vanda mathi rakheko
