@@ -4,7 +4,9 @@
 
 @tripId=6a1d48b7ad4f953a2ee6ed67
 
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3ODA2NDcwNDIsImV4cCI6MTc4MDczMzQ0Mn0.9bUHzqmf1aj36mSVwMuo761jdujImIcO65FXDujHrow
+@itineraryId=6a2a64d5513abd694e594f03
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3ODExNjMwMTEsImV4cCI6MTc4MTI0OTQxMX0.Yt09irOSm6l0_2pLbJCZ3xVi0IF8box9C79ZvS3yEfg
 
 @invitationToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlwSWQiOiI2YTFkNDhiN2FkNGY5NTNhMmVlNmVkNjciLCJpYXQiOjE3ODA2NDcxODUsImV4cCI6MTc4MDY1MDc4NX0.PG_BHKEIXqheNAKKVliKGnF8HrYWJ7XCrGwjKpSxeFk
 
@@ -41,6 +43,77 @@ Authorization: Bearer {{token}}
 
 ###Delete a specific baggages
 DELETE {{baseUrl}}/{{tripId}}/baggages/6a0017f8db270fbb2fb28397
+Authorization: Bearer {{token}}
+
+
+### Create Itinerary
+POST {{baseUrl}}/{{tripId}}/itineraries
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "trip": "{{tripId}}",
+    "title": "Day 1 in Pokhara",
+    "description": "Arrival, lake walk, and dinner near Lakeside.",
+    //"date": "2025-12-15",
+    "startDate": "2025-12-15",
+    "endDate": "2025-12-20",
+    "activities": [
+        {
+            "name": "Check in at hotel",
+            "time": "14:00",
+            "notes": [
+                "Confirm lake-view room",
+                "Ask about breakfast timing"
+            ]
+        },
+        {
+            "name": "Walk around Phewa Lake",
+            "time": "17:00",
+            "notes": [
+                "Bring a light jacket"
+            ]
+        }
+    ]
+}
+
+### Get all itineraries
+GET {{baseUrl}}/{{tripId}}/itineraries
+Authorization: Bearer {{token}}
+
+### Get a specific itinerary
+GET {{baseUrl}}/{{tripId}}/itineraries/{{itineraryId}}
+Authorization: Bearer {{token}}
+
+### Update a specific itinerary
+PATCH {{baseUrl}}/{{tripId}}/itineraries/{{itineraryId}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Day 1 in Pokhara - Lakeside",
+    "description": "Arrival, sunset walk, and dinner near Lakeside.",
+    "date": "2025-12-15",
+    "activities": [
+        {
+            "name": "Check in at hotel",
+            "time": "14:00",
+            "notes": [
+                "Confirm lake-view room"
+            ]
+        },
+        {
+            "name": "Dinner at Lakeside",
+            "time": "19:30",
+            "notes": [
+                "Reserve a table"
+            ]
+        }
+    ]
+}
+
+### Delete a specific itinerary
+DELETE {{baseUrl}}/{{tripId}}/itineraries/{{itineraryId}}
 Authorization: Bearer {{token}}
 
 
