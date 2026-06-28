@@ -47,7 +47,7 @@ export const updateUserValidator = [
             const user = await User.findOne({ 
                 email: value,
                 _id: { $ne: req.params.id}
-             });
+             }); 
                 if (user) {
                     throw new ValidationError("This email has already been taken");
                 }
