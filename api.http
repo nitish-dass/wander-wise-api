@@ -14,7 +14,7 @@
 POST {{baseUrl}}/{{tripId}}/baggages       
 //baggage location handlers ko index ma define gareko
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{token}
 
 {
     "name": "Suit"
@@ -156,7 +156,7 @@ Content-Type: application/json
 
 {
     "name": "Test User",
-    "email": "user@test3.com",
+    "email": "user123@test100.com",
     "password": "abcdefgh"
 }
 
@@ -177,7 +177,7 @@ Authorization: Bearer {{token}}
 {
   "title": "Trip to the moon",
   "startDate": "2025-12-15",
-  "endDate": "2025-12-16",
+  "endDate": "2025-12-16",  
   "budget": {
     "total": 1000
   },

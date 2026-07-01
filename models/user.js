@@ -40,7 +40,7 @@ UserSchema.pre("save", async function() {
 //Ensure password is hashed on update operation as well
 UserSchema.pre("findOneAndUpdate", async function (){
   if (this.getUpdate().password) {
-    this.getUpdate().passwoed = await hash(this.getUpdate().password, 10);
+    this.getUpdate().password = await hash(this.getUpdate().password, 10);
   }
 });
 
