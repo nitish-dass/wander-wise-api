@@ -14,7 +14,7 @@
 POST {{baseUrl}}/{{tripId}}/baggages       
 //baggage location handlers ko index ma define gareko
 Content-Type: application/json
-Authorization: Bearer {{token}
+Authorization: Bearer {{token}}
 
 {
     "name": "Suit"
