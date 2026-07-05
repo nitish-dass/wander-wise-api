@@ -63,7 +63,11 @@ const TripSchema = new Schema({
       ref: "User",
     },
   ],
-});
+},
+{
+  timestamps: true,
+}
+);
 
 TripSchema.pre("findOneAndUpdate", function () {
   const expenses = this.getUpdate().budget?.expenses;
