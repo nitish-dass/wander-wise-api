@@ -95,3 +95,18 @@ export const acceptInvite = async (token, userId) => {
 
   return { message: "Invitation accepted successfully" };
 }
+
+export const addExpense = async (tripId, expenseData, userId) => {
+  const trip = await Trip.findOne({
+    _id: tripId,
+    $or: [{user: userId}, {collaborators: userId}],
+  });
+
+  if(!trip) throw new NotFoundError("Trip is not found");
+
+  trip.budget.expenses.push(expenseData);
+  trip.budget.spent += expenseData.amount;
+  await trip.save();
+
+  return { message: "Expense added successfully"}
+}
