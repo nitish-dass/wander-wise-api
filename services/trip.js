@@ -60,7 +60,8 @@ export const inviteCollaborator = async (id, userId, collaboratorEmails) => {
 
   const token = await generateAccessToken({ tripId: id }, '1h');
 
-  const invitationLink = `${process.env.BASE_URL}/trips/${id}/invite/accept?token=${token}`;
+  const invitationLink = `${process.env.FRONTEND_URL}/trips/${id}/invite/accept?token=${token}`;  
+  // const invitationLink = `${process.env.BASE_URL}/trips/${id}/invite/accept?token=${token}`;    //for backend test
 
   await sendMail(collaboratorEmails.join(","), "Invitation to join a trip", {
     link: invitationLink,
@@ -109,4 +110,21 @@ export const addExpense = async (tripId, expenseData, userId) => {
   await trip.save();
 
   return { message: "Expense added successfully"}
+}
+
+
+export const uploadFiles = async (tripId, userId, files) => {
+  const trip = await getOne(tripId, userId);
+
+  await Promise.all(
+    files.map(async (file) => {
+      const result = await uploadFiles(file.path, `trips.${trip.title}_${tripId}`);
+      trip.files.push({
+        url: result.secure_url,
+        publicId: result.publicId,
+      });
+    })
+  )
+  await trip.save();
+  return trip;
 }
