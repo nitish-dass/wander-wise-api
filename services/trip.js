@@ -17,6 +17,8 @@ export const getAll = async (userId) => {
 };
 
 export const getOne = async (id, userId) => {
+  console.log("id:", id);
+console.log("userId:", userId);
   const trip = await Trip.findOne({
     _id: id,
     $and: [

@@ -7,22 +7,26 @@ export const create = async (data, tripId, userId) => {
     const trip = await getTrip(tripId, userId);
 
     if(
-        new Date(data.date) > new Date(trip.startDate) || new Date(data.date) < new Date(trip.endDate)
+        new Date(data.date) < new Date(trip.startDate) || new Date(data.date) > new Date(trip.endDate)
     ) {
         throw new ValidationError("Itinerary date must be within the trip dates");
     }
 
-    const itinerary = await Itinerary.create(date);
+    const itinerary = await Itinerary.create({...data, trip: tripId});
     return itinerary;
 };
 
 export const getAll = async (tripId, userId) => {
-    await getTrip(tripId. userId);
+    console.log("tripId:", tripId);
+console.log("userId:", userId);
+    const trip = await getTrip(tripId, userId);
     const itineraries = await Itinerary.find({ trip: tripId });
     return itineraries; 
 };
 
 export const getOne = async (id, userId, tripId) => {
+//     console.log("tripId:", tripId);
+// console.log("userId:", userId);
     await getTrip(tripId, userId);
     const itinerary = await Itinerary.findById(id);
     if (!itinerary) {

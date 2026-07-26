@@ -6,7 +6,7 @@
 
 @itineraryId=6a2a64d5513abd694e594f03
 
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3ODM4NDQwMjIsImV4cCI6MTc4MzkzMDQyMn0.NA8ho0BA5Ercmlmwq2lDmkKkbGbG4cBflinFncod6wM
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTEzZDA4OGY5MWZjMjcwY2M3OTQ3NjAiLCJpYXQiOjE3ODQ4Njk0MzAsImV4cCI6MTc4NDk1NTgzMH0.MykwUDw2SRZ9I7zhb5rihKiEVZJYsr433c93CsTkGeg
 
 @invitationToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmlwSWQiOiI2YTFkNDhiN2FkNGY5NTNhMmVlNmVkNjciLCJpYXQiOjE3ODM4NDQxMDEsImV4cCI6MTc4Mzg0NzcwMX0.PGEWS_tlk42wcd03B-sTk9v0e215cj0mStnM7JD7VmM
 
@@ -55,9 +55,8 @@ Authorization: Bearer {{token}}
     "trip": "{{tripId}}",
     "title": "Day 1 in Pokhara",
     "description": "Arrival, lake walk, and dinner near Lakeside.",
-    //"date": "2025-12-15",
-    "startDate": "2025-12-15",
-    "endDate": "2025-12-20",
+    "date": "2025-12-16",
+    //"date": "2025-12-17",
     "activities": [
         {
             "name": "Check in at hotel",

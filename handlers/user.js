@@ -7,7 +7,7 @@ const USER_ROUTER = Router();
 USER_ROUTER.post("/", createUserValidator, async (req, res, next) => {
     try {
         const user = await create(req.body);
-        res.status(201).json({ data: user });
+        res.status(201).json({ data: user });   //express alreaddy add data so compulsory data: lekhna necessary xaina
     } catch (error) {
         next(error);
     }

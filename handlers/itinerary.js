@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createItineraryValidator, updateItineraryValidator } from "../validators/itinerary.js";
-import { create, destroy, getAll, getOne, update } from "../services/trip.js";
+import { create, destroy, getAll, getOne, update } from "../services/itinerary.js";
 
 const ITINERARY_ROUTER = Router({ mergeParams: true });
 
@@ -15,8 +15,8 @@ ITINERARY_ROUTER.post("/", createItineraryValidator, async (req, res, next) => {
 
 ITINERARY_ROUTER.get("/", async (req, res, next) => {
     try {
-        const itineraries = await getAll(req.params.tripId, req.user.userId);
-        res.json(itineraries);
+        const itineraries = await getAll(req.params.tripId, req.user);
+        res.json({ data: itineraries });
     } catch (error) {
         next(error);
     }
@@ -26,7 +26,7 @@ ITINERARY_ROUTER.get("/", async (req, res, next) => {
 ITINERARY_ROUTER.get("/:id", async (req, res, next) => {
     try {
         const itinerary = await getOne(req.params.id, req.user, req.params.tripId);
-        res.json(itinerary);
+        res.json({ data: itinerary });
     } catch (error) {
         next(error);
     }
