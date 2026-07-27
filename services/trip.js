@@ -12,7 +12,9 @@ export const create = async (data, userId) => {
 export const getAll = async (userId) => {
   const trips = await Trip.find({
     $or: [{ user: userId }, { collaborators: userId }],
-  });
+  })
+  .populate("collaborators", ["name", "email"])
+  .populate("user", "name");
   return trips;
 };
 

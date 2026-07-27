@@ -11,10 +11,31 @@ export const register = async (data) => {
     return generateAccessToken({ userId: user._id });
 }
 
+// export const login = async (data) => {
+//     const user = await getUserByEmail(data.email);
+//     if (!await compare(data.password, user.password )) {
+//         throw new UnauthorizedError();
+//     }
+//     return generateAccessToken({ userId: user._id });
+// }
+
 export const login = async (data) => {
     const user = await getUserByEmail(data.email);
-    if (!await compare(data.password, user.password )) {
+
+    if (!await compare(data.password, user.password)) {
         throw new UnauthorizedError();
     }
-    return generateAccessToken({ userId: user._id });
-}
+
+    const token = await generateAccessToken({
+        userId: user._id,
+    });
+
+    return {
+        token,
+        user: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+        },
+    };
+};
