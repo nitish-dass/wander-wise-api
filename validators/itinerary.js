@@ -40,7 +40,7 @@ export const updateItineraryValidator = [
     .withMessage("Itinerary must be a valid MondoDB ID"),
   body("title").trim().optional(),
   body("description").trim().optional(),
-  body("date").trim().optional().isDate().withMessage("Date must be a date"),
+  body("date").trim().optional().toDate(),
   body("activities").isArray().withMessage("Activities must  be a date"),
   body("activities.*.name").trim().optional(),
   body("activities.*.time").trim().optional(),

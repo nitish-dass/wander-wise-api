@@ -39,7 +39,7 @@ export const update = async (id, userId, tripId, data) => {
    const trip = await getTrip(tripId, userId);
 
     if (
-        new Date(data.date) < new Date(trip.startDate) || new Date(date.date) > new Date(trip.endDate)
+        new Date(data.date) < new Date(trip.startDate) || new Date(data.date) > new Date(trip.endDate)
     ) {
         throw new ValidationError("Itinerary date must be within the trip dates");
     }
