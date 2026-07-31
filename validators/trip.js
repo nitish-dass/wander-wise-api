@@ -28,7 +28,6 @@ export const createTripValidator = [
       return true;
     }),
   body("destinations")
-    .trim()
     .notEmpty()
     .withMessage("Destinations are required")
     .isArray()
@@ -47,6 +46,10 @@ export const createTripValidator = [
     .optional()
     .isArray()
     .withMessage("Expenses must be an array"),
+  body("budget.expenses.*")
+    .optional()
+    .custom((value) => typeof value === "object" && value !== null)
+    .withMessage("Each expense must be an object"),
   body("budget.expenses.*.name")
     .optional()
     .trim()
@@ -57,6 +60,11 @@ export const createTripValidator = [
     .trim()
     .isNumeric()
     .withMessage("Expense amount must be a number"),
+  body("budget.expenses.*.date")
+    .optional()
+    .isISO8601()
+    .withMessage("Expense date must be a date")
+    .toDate(),
   validate,
 ];
 
@@ -83,7 +91,6 @@ export const updateTripValidator = [
       return true;
     }),
   body("destinations")
-    .trim()
     .optional()
     .isArray()
     .withMessage("Destinations must be an array"),
@@ -98,18 +105,25 @@ export const updateTripValidator = [
     .isNumeric()
     .withMessage("Total budget must be a number"),
   body("budget.expenses")
-    .trim()
     .optional()
     .isArray()
     .withMessage("Expenses must be an array"),
+   body("budget.expenses.*")
+    .optional()
+    .custom((value) => typeof value === "object" && value !== null)
+    .withMessage("Each expense must be an object"),
   body("budget.expenses.*.name")
-    .trim()
     .optional()
     .notEmpty()
     .withMessage("Expense name is required"),
   body("budget.expenses.*.amount")
-    .trim()
     .optional()
     .isNumeric()
     .withMessage("Expense amount must be a number"),
+    body("budget.expenses.*.date")
+    .optional()
+    .isISO8601()
+    .withMessage("Expense date must be a date")
+    .toDate(),
+  validate,
 ];
